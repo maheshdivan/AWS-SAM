@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Test Pipeline Lambda
+Resources:
+  hellofunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: hello_country.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://sam-demo-mahe-101/1bde524f43412eef9437d5b0893eff81
+      Description: Sample SAM Lambda with Api event deployment
+      Events:
+        ScheduleEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 minute)
